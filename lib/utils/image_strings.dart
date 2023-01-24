@@ -1,0 +1,1 @@
+const String foodImage1 = "assets/images/food01.jpg";
