@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/dimensions.dart';
+
 class BigText extends StatelessWidget {
   final String text;
    Color? color;
@@ -20,7 +22,7 @@ class BigText extends StatelessWidget {
       maxLines: 1,
       style: GoogleFonts.roboto(
         color: color,
-        fontSize: size,
+        fontSize: Dimensions.font20,
         fontWeight: FontWeight.w400,
       ),
 

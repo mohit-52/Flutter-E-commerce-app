@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/common_widgets/small_text.dart';
 import 'package:food_delivery/utils/colors.dart';
+import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/utils/image_strings.dart';
 
 import '../common_widgets/icon_and_text_widget.dart';
@@ -18,7 +19,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
   double _scaleFactor = 0.8;
-  double _height = 220;
+  double _Masterheight = Dimensions.pageViewMasterContainer;
+  double _height = Dimensions.pageViewContainer;
+  double _textHeight = Dimensions.pageViewTextContainer;
 
   @override
   void initState() {
@@ -26,7 +29,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     pageController.addListener(() {
       setState(() {
         _currentPageValue = pageController.page!;
-        print('Current value is ${_currentPageValue}'.toString());
       });
     });
   }
@@ -38,11 +40,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    // print('Screen Size is ${MediaQuery.of(context).size.height}');
     return Column(
       children: [
         // Page View Builder for Image Card and Info Card and Transform Animation
         Container(
-          height: 320,
+          height: _Masterheight,
           color: Colors.transparent,
           child: PageView.builder(
               controller: pageController,
@@ -95,8 +98,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
-            height: 220,
+            margin: EdgeInsets.only(left: Dimensions.height10, right: Dimensions.height10),
+            height: _height,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 image: DecorationImage(
@@ -105,9 +108,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-                margin: EdgeInsets.only(left: 30, right: 30, bottom: 30),
-                padding: EdgeInsets.only(left: 10, top: 15),
-                height: 130,
+                margin: EdgeInsets.only(left: Dimensions.height30, right: Dimensions.height30, bottom: Dimensions.height30),
+                padding: EdgeInsets.only(left: Dimensions.height10, top: Dimensions.height15),
+                height: _textHeight,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
@@ -127,7 +130,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ],
                     color: Colors.white),
                 child: Container(
-                  padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+                  padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -136,7 +139,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         color: Colors.black87,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: Dimensions.height10,
                       ),
                       Row(
                         children: [
@@ -150,17 +153,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             ),
                           )),
                           SizedBox(
-                            width: 20,
+                            width: Dimensions.height20,
                           ),
                           SmallText(text: '4.5'),
                           SizedBox(
-                            width: 20,
+                            width: Dimensions.height20,
                           ),
                           SmallText(text: '4287 Ratings'),
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Dimensions.height20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
