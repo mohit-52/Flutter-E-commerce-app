@@ -16,6 +16,7 @@ class MainFoodPage extends StatelessWidget {
         // Top Bar
         body: Column(
           children: [
+            // Food Page Header
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               padding: EdgeInsets.only(left: 20, right: 20),
@@ -52,6 +53,7 @@ class MainFoodPage extends StatelessWidget {
               ),
 
             ),
+            // Food Page Body
             FoodPageBody(),
           ],
         ),

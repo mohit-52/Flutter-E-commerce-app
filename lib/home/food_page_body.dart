@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/common_widgets/small_text.dart';
@@ -37,18 +38,35 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 320,
-      color: Colors.transparent,
-      child: PageView.builder(
-          controller: pageController,
-          itemCount: 5,
-          itemBuilder: (context, position) {
-            return _buildPageItem(position);
-          }),
+    return Column(
+      children: [
+        // Page View Builder for Image Card and Info Card and Transform Animation
+        Container(
+          height: 320,
+          color: Colors.transparent,
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: 5,
+              itemBuilder: (context, position) {
+                return _buildPageItem(position);
+              }),
+        ),
+
+    // Dots Indicator for the above cards
+    new DotsIndicator(
+    dotsCount: 5,
+    position: _currentPageValue,
+    decorator: DotsDecorator(
+      activeColor: AppColors.mainColor,
+    size: const Size.square(9.0),
+    activeSize: const Size(18.0, 9.0),
+    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+    ),
+    )
+      ],
     );
   }
-
+// Function for Image Card and Info Card and Transform Animation
   Widget _buildPageItem(int index) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currentPageValue.floor()) {

@@ -40,6 +40,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   gt: ^0.0.2
   get: ^4.6.5
+  dots_indicator: ^2.1.0
 
 dev_dependencies:
   flutter_test:
