@@ -19,7 +19,7 @@ class IconTextWidget extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: Dimensions.icon25,
+          size: Dimensions.icon24,
           color: iconColor,
         ),
         SmallText(text: text),

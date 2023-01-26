@@ -4,6 +4,7 @@ import 'package:food_delivery/common_widgets/small_text.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../utils/dimensions.dart';
 import 'food_page_body.dart';
 
 class MainFoodPage extends StatelessWidget {
@@ -26,10 +27,10 @@ class MainFoodPage extends StatelessWidget {
                   // Country and State
                   Column(
                     children: [
-                      BigText(text: 'India', color: AppColors.mainColor, size: 30,),
+                      BigText(text: 'India', color: AppColors.mainColor, size: Dimensions.height30,),
                       Row(
                         children: [
-                          SmallText(text: 'Delhi Ncr', color: Colors.black54, size: 14,),
+                          SmallText(text: 'Delhi Ncr', color: Colors.black54, size: Dimensions.height15,),
                           Icon(Icons.arrow_drop_down)
                         ],
                       ),
@@ -38,14 +39,15 @@ class MainFoodPage extends StatelessWidget {
 
                   // Search Icon
                   Container(
-                    height: 45,
-                    width: 45,
+                    height: Dimensions.height45,
+                    width: Dimensions.width45,
                     child: Icon(
                       Icons.search_outlined,
                       color: Colors.white,
+                      size: Dimensions.icon24,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(Dimensions.radius15),
                       color: AppColors.mainColor,
                     ),
                   )

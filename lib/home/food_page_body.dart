@@ -101,18 +101,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             margin: EdgeInsets.only(left: Dimensions.height10, right: Dimensions.height10),
             height: _height,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
                 image: DecorationImage(
                     fit: BoxFit.cover, image: AssetImage(foodImage1))),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-                margin: EdgeInsets.only(left: Dimensions.height30, right: Dimensions.height30, bottom: Dimensions.height30),
-                padding: EdgeInsets.only(left: Dimensions.height10, top: Dimensions.height15),
+                margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
+                padding: EdgeInsets.only(left: Dimensions.width10, top: Dimensions.height15),
                 height: _textHeight,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(Dimensions.radius30),
                     boxShadow: [
                       BoxShadow(
                         color: Color(0xFFe8e8e8),
@@ -130,12 +130,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ],
                     color: Colors.white),
                 child: Container(
-                  padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
+                  padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.width15, right: Dimensions.width15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BigText(
-                        text: 'Punjabi Ziaka',
+                        text: 'World Street',
                         color: Colors.black87,
                       ),
                       SizedBox(

@@ -11,7 +11,7 @@ class BigText extends StatelessWidget {
    BigText({Key? key,
      required this.text,
    this.color = const Color(0xff000000),
-     this.size = 20,
+     this.size = 0,
      this.overFlow = TextOverflow.ellipsis,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class BigText extends StatelessWidget {
       maxLines: 1,
       style: GoogleFonts.roboto(
         color: color,
-        fontSize: Dimensions.font20,
+        fontSize: size ==0 ? Dimensions.font20 : size,
         fontWeight: FontWeight.w400,
       ),
 
