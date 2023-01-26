@@ -15,12 +15,14 @@ class Dimensions {
   static double height30 = screenHeight / 26.76;
   static double height45 = screenHeight / 17.84;
 
+
   // Dynamic width for padding and margin
   static double width10 = screenHeight / 80.2;
   static double width15 = screenHeight / 53.52;
   static double width20 = screenHeight / 40.1;
   static double width30 = screenHeight / 26.76;
   static double width45 = screenHeight / 17.84;
+
 
 // Dynamic Font Sizes
   static double font20 = screenHeight / 44;
@@ -34,4 +36,12 @@ class Dimensions {
   static double radius15 = screenHeight / 53.52;
   static double radius20 = screenHeight / 40.1;
   static double radius30 = screenHeight / 26.76;
+
+  // ListView Sizes
+  static double listViewImageheight100 = screenHeight / 8.02;
+  static double listViewImageheight120 = screenHeight / 6.69;
+
+  static double listViewImageWidth100 = screenHeight / 8.02;
+  static double listViewImageWidth120 = screenHeight / 6.69;
+
 }

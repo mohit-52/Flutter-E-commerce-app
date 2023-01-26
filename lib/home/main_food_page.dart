@@ -27,7 +27,7 @@ class MainFoodPage extends StatelessWidget {
                   // Country and State
                   Column(
                     children: [
-                      BigText(text: 'India', color: AppColors.mainColor, size: Dimensions.height30,),
+                      BigText(text: 'Faridabad', color: AppColors.mainColor, size: Dimensions.height30,),
                       Row(
                         children: [
                           SmallText(text: 'Delhi Ncr', color: Colors.black54, size: Dimensions.height15,),
@@ -56,7 +56,11 @@ class MainFoodPage extends StatelessWidget {
 
             ),
             // Food Page Body
-            FoodPageBody(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: FoodPageBody(),
+              ),
+            )
           ],
         ),
 
