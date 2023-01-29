@@ -3,8 +3,7 @@ import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/common_widgets/small_text.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../utils/dimensions.dart';
+import '../../utils/dimensions.dart';
 import 'food_page_body.dart';
 
 class MainFoodPage extends StatelessWidget {

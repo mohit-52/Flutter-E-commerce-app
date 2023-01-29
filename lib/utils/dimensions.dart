@@ -14,6 +14,9 @@ class Dimensions {
   static double height20 = screenHeight / 40.1;
   static double height30 = screenHeight / 26.76;
   static double height45 = screenHeight / 17.84;
+  static double height200 = screenHeight / 4.01;
+  static double height400 = screenHeight / 2.005;
+
 
 
   // Dynamic width for padding and margin
@@ -22,13 +25,20 @@ class Dimensions {
   static double width20 = screenHeight / 40.1;
   static double width30 = screenHeight / 26.76;
   static double width45 = screenHeight / 17.84;
+  static double width200 = screenHeight / 4.01;
+  static double width400 = screenHeight / 2.005;
+
 
 
 // Dynamic Font Sizes
+  static double font16 = screenHeight / 50.12;
+  static double font18 = screenHeight / 44.5;
   static double font20 = screenHeight / 44;
+  static double font26 = screenHeight / 30.84;
 
   // Dynamic icon sizes
   static double icon24 = screenHeight / 33.45;
+  static double icon16 = screenHeight / 50.12;
 
   // Dynamic radius for padding and margin
   static double radius5 = screenHeight / 160.58;
@@ -44,4 +54,9 @@ class Dimensions {
   static double listViewImageWidth100 = screenHeight / 8.02;
   static double listViewImageWidth120 = screenHeight / 6.69;
 
+  // Popular Food
+static double populatFoodImgSize = screenHeight/2.29;
+
+// Bootm Height
+static double bottomHeightBar = screenHeight/6.68;
 }
