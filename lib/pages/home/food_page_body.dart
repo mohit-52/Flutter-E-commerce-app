@@ -2,11 +2,15 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/common_widgets/small_text.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/utils/image_strings.dart';
+import 'package:get/get.dart';
 import '../../common_widgets/app_column_home_screen.dart';
 import '../../common_widgets/icon_and_text_widget.dart';
+import '../../models/products_model.dart';
 
 
 class FoodPageBody extends StatefulWidget {
@@ -48,29 +52,33 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         // Page View Builder for Image Card and Info Card Slider Section
-        Container(
+        GetBuilder<PopularProductContoller>(builder: (popularProduct){
+        return Container(
           height: _Masterheight,
           color: Colors.transparent,
           child: PageView.builder(
               controller: pageController,
-              itemCount: 5,
+              itemCount: popularProduct.popularProductList.length,
               itemBuilder: (context, position) {
-                return _buildPageItem(position);
+                return _buildPageItem(position, popularProduct.popularProductList[position]);
               }),
-        ),
+        );
+        }),
 
         // Dots Indicator for the above cards
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        GetBuilder<PopularProductContoller>(builder: (popularProduct){
+          return  DotsIndicator(
+            dotsCount: popularProduct.popularProductList.length<=0?1:popularProduct.popularProductList.length,
+            position: _currentPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
 
         //  Popular Text
         SizedBox(height: Dimensions.height30,),
@@ -175,7 +183,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   }
 
 // Function for Image Card and Info Card and Transform Animation
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
 
     // Current card transform
@@ -219,7 +227,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
                 image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage(foodImage1))),
+                    fit: BoxFit.cover, image: NetworkImage(
+                  AppConstants.BASE_URL+"/uploads"+popularProduct.img!
+                ))),
           ),
 
           // Text Card
