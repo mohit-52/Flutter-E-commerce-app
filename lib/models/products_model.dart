@@ -13,14 +13,14 @@ class Product{
     this._products = products;
   }
 
-  Product.fromJson(Map<String, dynamic>json){
+  Product.fromJson(Map<String, dynamic> json){
     _totalSize = json['totalSize'];
     _typeId = json['typeId'];
     _offSet = json['offSet'];
     if (json['products'] != null){
       _products  = <ProductModel>[];
       (json['products'] as List).forEach((v){
-        _products!.add(v);
+        _products!.add(ProductModel.fromJson(v));
       });
     }
 
