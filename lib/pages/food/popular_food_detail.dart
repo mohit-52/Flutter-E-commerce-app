@@ -2,17 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/common_widgets/app_column_home_screen.dart';
 import 'package:food_delivery/common_widgets/expandable_text_widget.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/utils/image_strings.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../common_widgets/app_icon.dart';
 import '../../common_widgets/big_text.dart';
 import '../../utils/colors.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductContoller>().popularProductList[pageId];
+    // print("page ID is" + pageId.toString());
+    // print("Product name is" + product.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -26,7 +37,10 @@ class PopularFoodDetail extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(foodImage1), fit: BoxFit.cover)),
+                        image: NetworkImage(AppConstants.BASE_URL +
+                            AppConstants.UPLOAD_URl +
+                            product.img!),
+                        fit: BoxFit.cover)),
               )),
           // Icons on the image i.e back and cart icon
           Positioned(
@@ -36,8 +50,13 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => MainFoodPage());
+                  },
+                  child: AppIcon(
+                    icon: Icons.arrow_back_ios,
+                  ),
                 ),
                 AppIcon(
                   icon: Icons.shopping_cart,
@@ -67,7 +86,7 @@ class PopularFoodDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppColumn(
-                      text: "World Street",
+                      text: product.name!,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -76,13 +95,14 @@ class PopularFoodDetail extends StatelessWidget {
                       text: 'Introduce',
                       size: Dimensions.font20,
                     ),
-                    SizedBox(height: Dimensions.height20,),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         child: ExpandableTextWidget(
-                            text:
-                                "Food is any substance consumed to provide nutritional support and energy to an organism.[2][3] It can be raw, processed or formulated and is consumed orally by animals for growth, health or pleasure. Food is mainly composed of water, lipids, proteins and carbohydrates. Minerals (e.g. salts) and organic substances (e.g. vitamins) can also be found in food.[4] Plants, algae and some microorganisms use photosynthesis to make their own food molecules.[5] Water is found in many foods and has been defined as a food by itself.[6] Water and fiber have low energy densities, or calories, while fat is the most energy dense component.[3] Some inorganic (non-food) elements are also essential for plant and animal "
-                                    "functioning.", ),
+                          text: product.description!,
+                        ),
                       ),
                     )
                   ],
@@ -148,7 +168,7 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
-                  BigText(text: '1.12 |'),
+                  BigText(text: product.price!.toString() + " |"),
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
