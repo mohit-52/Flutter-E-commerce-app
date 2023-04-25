@@ -16,15 +16,13 @@ import '../../utils/colors.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
-
   PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var product = Get.find<PopularProductContoller>().popularProductList[pageId];
-    Get.find<PopularProductContoller>().initProduct(Get.find<CartController>());
-    // print("page ID is" + pageId.toString());
-    // print("Product name is" + product.toString());
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -113,7 +111,7 @@ class PopularFoodDetail extends StatelessWidget {
       ),
       // Bottom Navigation Bar
       bottomNavigationBar:
-          GetBuilder<PopularProductContoller>(builder: (popularProduct) {
+          GetBuilder<PopularProductController>(builder: (popularProduct) {
         return Container(
           height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(
@@ -150,7 +148,7 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),
-                    BigText(text: popularProduct.quantity.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),

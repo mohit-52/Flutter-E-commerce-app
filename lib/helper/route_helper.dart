@@ -3,7 +3,8 @@ import 'package:food_delivery/pages/food/recommended_food_detail.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 
-class RouteHelper {
+class
+RouteHelper {
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
@@ -15,6 +16,7 @@ class RouteHelper {
 
   static String getInitial() => "$initial";
 
+  // Routes List
   static List<GetPage> routes = [
     GetPage(
         name: "/",

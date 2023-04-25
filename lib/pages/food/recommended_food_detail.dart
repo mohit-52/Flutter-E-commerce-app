@@ -7,7 +7,6 @@ import 'package:food_delivery/helper/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/utils/image_strings.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
