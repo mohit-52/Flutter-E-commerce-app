@@ -1,4 +1,5 @@
+import 'package:get/get.dart';
 
-class CartRepo {
+class CartRepo extends GetxController{
 
 }
