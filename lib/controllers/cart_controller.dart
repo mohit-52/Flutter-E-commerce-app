@@ -77,7 +77,6 @@ class CartController extends GetxController {
         }
       });
     }
-    update();
     return quantity;
   }
 
