@@ -5,6 +5,7 @@ import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/helper/route_helper.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -43,9 +44,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                     children: [
                       AppIcon(icon: Icons.shopping_cart),
                       Get.find<PopularProductController>().totalItems>=1 ?
-                      Positioned(
-                          right:0, top:0,
-                          child: AppIcon(icon: Icons.circle, size: 20,iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)):
+                      GestureDetector(
+                        onTap: (){
+                          Get.to(()=> CartPage());
+                        },
+                        child: Positioned(
+                            right:0, top:0,
+                            child: AppIcon(icon: Icons.circle, size: 20,iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)),
+                      ):
                       Container(),
 
                       Get.find<PopularProductController>().totalItems>=1 ?

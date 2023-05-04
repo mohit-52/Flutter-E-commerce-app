@@ -48,15 +48,15 @@ class Dimensions {
   static double radius30 = screenHeight / 26.76;
 
   // ListView Sizes
-  static double listViewImageheight100 = screenHeight / 8.02;
-  static double listViewImageheight120 = screenHeight / 6.69;
+  static double listViewImageHeight100 = screenHeight / 8.02;
+  static double listViewImageHeight120 = screenHeight / 6.69;
 
   static double listViewImageWidth100 = screenHeight / 8.02;
   static double listViewImageWidth120 = screenHeight / 6.69;
 
   // Popular Food
-static double populatFoodImgSize = screenHeight/2.29;
+static double popularFoodImgSize = screenHeight/2.29;
 
-// Bootm Height
+// Bottom Height
 static double bottomHeightBar = screenHeight/6.68;
 }

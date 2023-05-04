@@ -3,6 +3,7 @@ import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/popular_product_repo.dart';
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController {
@@ -98,7 +99,6 @@ class PopularProductController extends GetxController {
       _inCartItems = cart.getQuantity(product);
     }
     print("The quantity in the cart is " + _inCartItems.toString());
-    // get it from local storage _inCartItems = 3;
   }
 
   void addItem(ProductModel product) {
@@ -119,5 +119,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems{
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems{
+    return _cart.getItems;
   }
 }
