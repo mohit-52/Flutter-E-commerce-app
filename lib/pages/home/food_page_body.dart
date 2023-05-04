@@ -51,7 +51,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         // Page View Builder for Image Card and Info Card Slider Section
-        GetBuilder<PopularProductContoller>(builder: (popularProduct) {
+        GetBuilder<PopularProductController>(builder: (popularProduct) {
           return popularProduct.isLoaded
               ? Container(
                   height: _Masterheight,
@@ -68,7 +68,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         }),
 
         // Dots Indicator for the above cards
-        GetBuilder<PopularProductContoller>(builder: (popularProduct) {
+        GetBuilder<PopularProductController>(builder: (popularProduct) {
           return DotsIndicator(
             dotsCount: popularProduct.popularProductList.length <= 0
                 ? 1

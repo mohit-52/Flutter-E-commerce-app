@@ -19,7 +19,7 @@ Get.lazyPut(()=> RecommendedProductRepo(apiClient: Get.find()));
 Get.lazyPut(()=> CartRepo());
 
 // Controllers
-Get.lazyPut(() => PopularProductContoller(popularProductRepo: Get.find()));
+Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
 Get.lazyPut(() => RecommendedProductController(recommendedProductRepo: Get.find()));
 Get.lazyPut(() => CartController(cartRepo: Get.find()));
 }

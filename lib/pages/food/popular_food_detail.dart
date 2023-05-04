@@ -7,7 +7,6 @@ import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/utils/image_strings.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../common_widgets/app_icon.dart';
@@ -21,8 +20,9 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product = Get.find<PopularProductContoller>().popularProductList[pageId];
-    Get.find<PopularProductContoller>().initProduct(Get.find<CartController>());
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
     // print("page ID is" + pageId.toString());
     // print("Product name is" + product.toString());
     return Scaffold(
@@ -59,9 +59,24 @@ class PopularFoodDetail extends StatelessWidget {
                     icon: Icons.arrow_back_ios,
                   ),
                 ),
-                AppIcon(
-                  icon: Icons.shopping_cart,
-                )
+                GetBuilder<PopularProductController>(builder: (controller) {
+                  return Stack(
+                    children: [
+                      AppIcon(icon: Icons.shopping_cart),
+                      Get.find<PopularProductController>().totalItems>=1 ?
+                  Positioned(
+                      right:0, top:0,
+                      child: AppIcon(icon: Icons.circle, size: 20,iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)):
+                      Container(),
+
+                      Get.find<PopularProductController>().totalItems>=1 ?
+                      Positioned(
+                          top:3,right:3,
+                          child: Text(controller.totalItems.toString(), style: TextStyle(fontSize: 12, color: Colors.white),))
+                              :Container()
+                    ],
+                  );
+                })
               ],
             ),
           ),
@@ -113,7 +128,7 @@ class PopularFoodDetail extends StatelessWidget {
       ),
       // Bottom Navigation Bar
       bottomNavigationBar:
-          GetBuilder<PopularProductContoller>(builder: (popularProduct) {
+          GetBuilder<PopularProductController>(builder: (popularProduct) {
         return Container(
           height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(
@@ -150,7 +165,7 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),
-                    BigText(text: popularProduct.quantity.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),
@@ -167,7 +182,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   popularProduct.addItem(product);
                 },
                 child: Container(
@@ -176,23 +191,22 @@ class PopularFoodDetail extends StatelessWidget {
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: AppColors.mainColor),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.monetization_on_outlined,
-                          color: AppColors.iconColor2,
-                        ),
-                        SizedBox(
-                          width: Dimensions.width10 / 2,
-                        ),
-                        BigText(text: product.price!.toString() + " |"),
-                        SizedBox(
-                          width: Dimensions.width10 / 2,
-                        ),
-                        BigText(text: "Add to cart")
-                      ],
-                    ),
-
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.monetization_on_outlined,
+                        color: AppColors.iconColor2,
+                      ),
+                      SizedBox(
+                        width: Dimensions.width10 / 2,
+                      ),
+                      BigText(text: product.price!.toString() + " |"),
+                      SizedBox(
+                        width: Dimensions.width10 / 2,
+                      ),
+                      BigText(text: "Add to cart")
+                    ],
+                  ),
                 ),
               ),
             ],
