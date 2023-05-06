@@ -117,7 +117,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
-        // List of other restraunts
+        // List of other restaurants
         SizedBox(
           height: Dimensions.height30,
         ),
@@ -130,7 +130,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedProduct(index));
+                        Get.toNamed(RouteHelper.getRecommendedProduct(index, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -270,7 +270,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           // Image Card with food image
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularProduct(index));
+              Get.toNamed(RouteHelper.getPopularProduct(index, "home"));
             },
             child: Container(
               margin: EdgeInsets.only(

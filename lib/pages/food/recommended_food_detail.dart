@@ -5,7 +5,6 @@ import 'package:food_delivery/common_widgets/big_text.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/helper/route_helper.dart';
-import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -16,9 +15,10 @@ import '../../common_widgets/expandable_text_widget.dart';
 import '../../controllers/cart_controller.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  int pageId;
+  final int pageId;
+  final String page;
   RecommendedFoodDetail({Key? key,
-  required this.pageId}) : super(key: key);
+  required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +35,42 @@ class RecommendedFoodDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: (){
-                    Get.toNamed(RouteHelper.getInitial());
-                  },
+                    onTap: () {
+                      if(page=="cartpage"){
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }else{
+                        Get.toNamed(RouteHelper.getInitial());
+
+                      }
+                    },
                     child: AppIcon(icon: Icons.clear)),
                 GetBuilder<PopularProductController>(builder: (controller) {
-                  return Stack(
-                    children: [
-                      AppIcon(icon: Icons.shopping_cart),
-                      Get.find<PopularProductController>().totalItems>=1 ?
-                      GestureDetector(
-                        onTap: (){
-                          Get.to(()=> CartPage());
-                        },
-                        child: Positioned(
+                  return GestureDetector(
+                    onTap: (){
+                      if(controller.totalItems>=1){
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }else{
+                        Get.snackbar("Cart is Emoty", "Please Add Some items in cart");
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart),
+                        controller.totalItems>=1 ?
+                        Positioned(
                             right:0, top:0,
-                            child: AppIcon(icon: Icons.circle, size: 20,iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)),
-                      ):
-                      Container(),
+                            child:  AppIcon(icon: Icons.circle, size: 20,iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)):
+                        Container(),
 
-                      Get.find<PopularProductController>().totalItems>=1 ?
-                      Positioned(
-                          top:3,right:3,
-                          child: Text(controller.totalItems.toString(), style: TextStyle(fontSize: 12, color: Colors.white),))
-                          :Container()
-                    ],
+                        controller.totalItems>=1 ?
+                        Positioned(
+                            top:3,right:3,
+                            child: Text(controller.totalItems.toString(), style: TextStyle(fontSize: 12, color: Colors.white),))
+                            :Container()
+                      ],
+                    ),
                   );
-                }),
+                })
               ],
             ),
             bottom: PreferredSize(
